@@ -80,7 +80,7 @@ void HitCircle::update()
 		if (timer.getElapsedTime().asMilliseconds() > 600.0f)
 			*fadeState = FadeState::FADINGOUT;
 
-		float scale = (600.0f - timer.getElapsedTime().asMilliseconds()) / 400.0f + 0.35f;
+		float scale = (600.0f - timer.getElapsedTime().asMilliseconds()) / 600.0f + 0.35f;
 		spriteAC->setScale(sf::Vector2f(scale, scale));
 		sf::FloatRect bounds = sprite->getGlobalBounds();
 		sf::Vector2f center = sf::Vector2f(bounds.left + bounds.width / 2,

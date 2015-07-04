@@ -49,7 +49,7 @@ int main()
 
 		if (patternState == PatternState::LOADING)
 		{
-			if (spawnTimer.getElapsedTime().asMilliseconds() > 250)
+			if (spawnTimer.getElapsedTime().asMilliseconds() > 300)
 			{
 				hitCircles[toSpawn - 1]->reload();
 				*hitCircles[toSpawn-1]->fadeState = FadeState::FADINGIN;
