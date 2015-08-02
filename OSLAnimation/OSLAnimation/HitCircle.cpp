@@ -33,7 +33,8 @@ HitCircle::HitCircle(int number, sf::RenderWindow* window)
 void HitCircle::reload()
 {
 	sprite->setTexture(*texture);
-	sprite->setScale(sf::Vector2f(0.35f, 0.35f));
+	float scale = 0.25f;
+	sprite->setScale(sf::Vector2f(scale, scale));
 
 	float distance = window->getSize().y * 0.24f;
 	float degrees = (number - 1) * 45 - 90;
@@ -46,7 +47,8 @@ void HitCircle::reload()
 	position.y -= sprite->getGlobalBounds().height / 2;
 	sprite->setPosition(position);
 
-	spriteAC->setScale(sf::Vector2f(0.35f * 1.5f, 0.35f * 1.5f));
+	float approachCircleScale = scale * 1.0f;
+	spriteAC->setScale(sf::Vector2f(approachCircleScale, approachCircleScale));
 	position.x = midpoint.x - spriteAC->getGlobalBounds().width / 2;
 	position.y = midpoint.y - spriteAC->getGlobalBounds().height / 2;
 	spriteAC->setPosition(position);
@@ -80,7 +82,7 @@ void HitCircle::update()
 		if (timer.getElapsedTime().asMilliseconds() > 600.0f)
 			*fadeState = FadeState::FADINGOUT;
 
-		float scale = (600.0f - timer.getElapsedTime().asMilliseconds()) / 600.0f + 0.35f;
+		float scale = (600.0f - timer.getElapsedTime().asMilliseconds()) / 850.0f + 0.25f;
 		spriteAC->setScale(sf::Vector2f(scale, scale));
 		sf::FloatRect bounds = sprite->getGlobalBounds();
 		sf::Vector2f center = sf::Vector2f(bounds.left + bounds.width / 2,
@@ -98,7 +100,7 @@ void HitCircle::update()
 		sf::Vector2f center = sf::Vector2f(bounds.left + bounds.width / 2,
 			                               bounds.top + bounds.height / 2);
 
-		float scale = (timer.getElapsedTime().asMilliseconds() - 600.0f) / 4500.0f + 0.35f;
+		float scale = (timer.getElapsedTime().asMilliseconds() - 600.0f) / 4500.0f + 0.25f;
 		sprite->setScale(scale, scale);
 
 		sprite->setPosition(center.x - sprite->getGlobalBounds().width / 2,

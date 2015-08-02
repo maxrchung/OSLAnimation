@@ -12,7 +12,7 @@ enum PatternState
 
 int main()
 {
-	sf::Vector2i screen = sf::Vector2i(sf::VideoMode::getDesktopMode().width, sf::VideoMode::getDesktopMode().height + 2);
+	sf::Vector2i screen = sf::Vector2i(1280, 720);
 	sf::RenderWindow* window = new sf::RenderWindow(sf::VideoMode(screen.x, screen.y), "OSL", sf::Style::None);
 	window->setFramerateLimit(60);
 
@@ -45,6 +45,13 @@ int main()
         {
             if (event.type == sf::Event::Closed)
                 window->close();
+			else if (event.type == sf::Event::KeyPressed)
+			{
+				if (event.key.code == sf::Keyboard::Escape)
+				{
+					window->close();
+				}
+			}
         }
 
 		if (patternState == PatternState::LOADING)
@@ -52,7 +59,7 @@ int main()
 			if (spawnTimer.getElapsedTime().asMilliseconds() > 300)
 			{
 				hitCircles[toSpawn - 1]->reload();
-				*hitCircles[toSpawn-1]->fadeState = FadeState::FADINGIN;
+				*hitCircles[toSpawn - 1]->fadeState = FadeState::FADINGIN;
 
 				spawnTimer.restart();
 				toSpawn++;
